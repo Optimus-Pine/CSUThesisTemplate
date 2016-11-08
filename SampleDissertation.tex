@@ -1,0 +1,149 @@
+% This is a sample template created in the spring of 2016 by Melody Alsaker, which hopefully corrects some of the issues with Leif's csuthesis class. 
+% The changes made in the preamble of this document correct formatting "problems" that the Grad School complained about.
+% My dissertation was accepted by the Grad School in March 2016 using this template along with Leif's document class. 
+
+
+\documentclass[nosmallcaps]{csuthesis} % The nosmallcaps command gets rid of the smallcaps font in the titles, which looks nice but is non-standard according to Grad School. 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{float} % Allows for override of object placement by using placement specifier H
+\usepackage{graphicx}
+\usepackage{placeins} % So we can use \FloatBarrier command -- very important to keep figures from migrating into chapters where they don't belong!
+\usepackage[all]{nowidow} % This helps prevent widow lines, which the Grad School doesn't like!
+\usepackage{lipsum}
+
+% These commands help prevent orphan and widow lines by setting their penalties to "infinite badness." The Grad School forbids orphan and widow lines!!
+\widowpenalty10000
+\clubpenalty10000
+
+% These two commands are needed to prevent large, awkward white spaces between sections and around equations, 
+% which the Grad School apparently hates with the passion of a thousand fiery suns. 
+% So you'll get gaps at the bottom of the page instead. As long as these aren't too big, it is okay.
+% If you get very large white space at the bottoms of pages, they may complain about that, and then
+% you may be stuck rewording your paragraphs. 
+\raggedbottom % Tells LaTex it's okay to not fill text all the way to the bottom of the page.
+\allowdisplaybreaks % Allows large blocks of equations to be split up across pages.
+
+
+
+% This makes the bibliography left-aligned, as per Graduate School requirements. LaTex default will get rejected!!!
+\makeatletter
+\renewcommand{\@biblabel}[1]{[#1]\hfill}
+\makeatother
+
+% This is a modification of the commands to make chapter headings from Leif's template.
+% Leif's template makes the font size larger and in small caps for chapter headings. Grad School DID NOT approve!!
+% This code block overrides the chapter heading definitions in the .cls file. 
+\def\@makechapterhead#1{\global\topskip .625in\relax
+\begingroup
+\normalsize\normalfont\scshape\centering
+\ifnum\c@secnumdepth>\m@ne
+\leavevmode \hskip-\leftskip
+\rlap{\vbox to\z@{\vss
+\centerline{\normalsize\mdseries
+\uppercase\@xp{\chaptername}\enspace\thechapter}
+\vskip 3pc}}\hskip\leftskip\fi
+\uppercase{ #1 \large \par \endgroup} % REMOVING THE \Large COMMAND FROM CHAPTER TITLES, ADDED THE \large COMMAND INSTEAD, ADDED \uppercase
+\skip@34\p@ \advance\skip@-\normalbaselineskip
+\vskip\skip@ }
+
+
+\title{Conformations to Idiotic Graduate School Formatting Requirements}
+\author{Lando Calrissian}
+\departmentname{Department of Mathematics}
+\advisor{Jack Sparrow}
+\committee{M.C. Hammer \and Wavy Gravy  \and Tyrion Lannister}
+\gradterm{Spring}
+
+
+
+
+\setcounter{secnumdepth}{2} % Section numbering depth (This can be changed if desired)
+\setcounter{tocdepth}{2} % Table of contents depth (This can be changed if desired)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\frontmatter
+
+\begin{abstract}
+Abstract goes here.
+\end{abstract}
+
+\begin{acknowledgements}
+So long, and thanks for all the fish. 
+\end{acknowledgements}
+
+\maketitle
+\tableofcontents
+\cleardoublepage
+\listoftables
+\listoffigures
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+\chapter{Introduction}
+\lipsum[1] 
+
+See Figure~\ref{dog} for a lovely picture of a dog doing science. \lipsum[2]
+
+\begin{figure}[htbp]
+\includegraphics{science-dog.jpg}
+\caption{Figure captions go under the figures.} \label{dog}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{{This is the first section}} 
+\lipsum[3] See, for example, \cite{Item1, Item2, Item3, Item4} or \cite{Item5, Item6, Item7, Item8, Item9, Item10, Item11}. \lipsum[4]
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{This is a subsection}
+See some made-up numbers that mean nothing in Table~\ref{table1}. \lipsum[4-5].
+
+\begin{table}[htbp]
+\caption{Table captions go above the tables.} \label{table1}
+\begin{tabular}{|c| c|}
+\hline
+Column1 & Column2 \\
+\hline
+4.5 & 900 \\
+36 & 10.456 \\
+\hline
+\end{tabular}
+\end{table}
+
+\lipsum[6-8]
+
+
+\FloatBarrier % Keeps floats from migrating past the bibliography (or into other chapters)
+
+% Bibliography should begin on its own page. 
+\newpage
+\bibliographystyle{plain}
+\bibliography{Sample}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
