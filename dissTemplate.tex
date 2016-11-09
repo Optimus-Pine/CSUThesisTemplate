@@ -1,0 +1,147 @@
+% Updated 8 Nov 2016
+% Sample dissertation template - Colorado State University PhD 
+
+% This template is meant as a starting point for formatting a PhD 
+% thesis to meet the requirements of the graduate school at
+% Colorado State University.
+% Currently hosted at  
+% https://github.com/Optimus-Pine/CSUThesisTemplate/
+
+%%% 		Dependencies %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The nosmallcaps command gets rid of the smallcaps font in the titles, which looks nice but is non-standard according to Grad School.
+% NOTE - SP We may want to remove this option and just include it in the new class file 
+\documentclass[nosmallcaps]{csuthesis} 
+
+\usepackage{amsfonts, amsmath, amssymb, amsthm} % Standard AMS Libs
+\usepackage{float} 	% Allows overriding of float placement by
+					% using the placement specifier H
+\usepackage{graphicx}
+\usepackage{placeins} 	% So we can use \FloatBarrier command 
+						% Important to keep figures from migrating 						% into chapters where they don't belong!
+\usepackage[all]{nowidow} 	% This helps prevent widow lines, 	
+							% which the Grad School doesn't like!
+\usepackage{lipsum}	% Allows us to fill in nonsense text
+					% Remove this from your document
+
+% NOTE - SP We may be able to move these to the class file
+% These commands help prevent orphan and widow lines by setting their penalties to "infinite badness." The Grad School forbids orphan and widow lines!!
+\widowpenalty10000
+\clubpenalty10000
+
+% These two commands are needed to prevent large, awkward white spaces between sections and around equations, 
+% which the Grad School apparently hates with the passion of a thousand fiery suns. 
+% So you'll get gaps at the bottom of the page instead. As long as these aren't too big, it is okay.
+% If you get very large white space at the bottoms of pages, they may complain about that, and then
+% you may be stuck rewording your paragraphs. 
+\raggedbottom % Tells LaTex it's okay to not fill text all the way to the bottom of the page.
+\allowdisplaybreaks % Allows large blocks of equations to be split up across pages.
+
+
+% NOTE - SP This might also be able to move to class file
+% This makes the bibliography left-aligned, as per Graduate School requirements. LaTex default will get rejected!!!
+\makeatletter
+\renewcommand{\@biblabel}[1]{[#1]\hfill}
+\makeatother
+
+% NOTE - SP Move to class file?
+% This is a modification of the commands to make chapter headings from Leif's template.
+% Leif's template makes the font size larger and in small caps for chapter headings. Grad School DID NOT approve!!
+% This code block overrides the chapter heading definitions in the .cls file. 
+\def\@makechapterhead#1{\global\topskip .625in\relax
+\begingroup
+\normalsize\normalfont\scshape\centering
+\ifnum\c@secnumdepth>\m@ne
+\leavevmode \hskip-\leftskip
+\rlap{\vbox to\z@{\vss
+\centerline{\normalsize\mdseries
+\uppercase\@xp{\chaptername}\enspace\thechapter}
+\vskip 3pc}}\hskip\leftskip\fi
+\uppercase{ #1 \large \par \endgroup} % REMOVING THE \Large COMMAND FROM CHAPTER TITLES, ADDED THE \large COMMAND INSTEAD, ADDED \uppercase
+\skip@34\p@ \advance\skip@-\normalbaselineskip
+\vskip\skip@ }
+
+% NOTE - SP This is accurate, but we have to tone this down before sending to the grad school
+\title{Conformations to Idiotic Graduate School Formatting Requirements}
+\author{Lando Calrissian}
+\departmentname{Department of Mathematics}
+\advisor{Jack Sparrow}
+\committee{M.C. Hammer \and Wavy Gravy  \and Tyrion Lannister}
+\gradterm{Spring}
+
+% NOTE - SP Maybe this can go? Idk yet.
+\setcounter{secnumdepth}{2} % Section numbering depth (This can be changed if desired)
+\setcounter{tocdepth}{2} % Table of contents depth (This can be changed if desired)
+
+%%% 		Title Pages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\frontmatter
+
+\begin{abstract}
+Abstract goes here.
+\end{abstract}
+
+\begin{acknowledgements}
+So long, and thanks for all the fish. 
+\end{acknowledgements}
+
+\maketitle
+\tableofcontents
+\cleardoublepage
+\listoftables
+\listoffigures
+
+%%% 		Paper Body %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+\chapter{Introduction}
+\lipsum[1] 
+
+See Figure~\ref{dog} for a lovely picture of a dog doing science. \lipsum[2]
+
+\begin{figure}[htbp]
+\includegraphics{science-dog.jpg}
+\caption{Figure captions go under the figures.} \label{dog}
+\end{figure}
+
+\section{{This is the first section}} 
+\lipsum[3] See, for example, \cite{Item1, Item2, Item3, Item4} or \cite{Item5, Item6, Item7, Item8, Item9, Item10, Item11}. \lipsum[4]
+
+\subsection{This is a subsection}
+See some made-up numbers that mean nothing in Table~\ref{table1}. \lipsum[4-5].
+
+\begin{table}[htbp]
+\caption{Table captions go above the tables.} \label{table1}
+\begin{tabular}{|c| c|}
+\hline
+Column1 & Column2 \\
+\hline
+4.5 & 900 \\
+36 & 10.456 \\
+\hline
+\end{tabular}
+\end{table}
+
+\lipsum[6-8]
+
+
+\FloatBarrier % Keeps floats from migrating past the bibliography (or into other chapters)
+
+% Bibliography should begin on its own page. 
+\newpage
+\bibliographystyle{plain}
+\bibliography{Sample}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
